@@ -51,7 +51,7 @@ class DriverController extends Controller
      */
     public function destroy(Policy $policy, Driver $driver)
     {
-        $driver->delete();
+        $policy->drivers()->findOrFail($driver->id)->delete();
 
         return response()->noContent();
     }
