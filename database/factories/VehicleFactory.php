@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
+use App\Models\Coverage;
 use App\Models\Policy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,7 +23,7 @@ class VehicleFactory extends Factory
             'make' => $this->faker->word,
             'model' => $this->faker->word,
             'year' => $this->faker->year,
-            'vin' => $this->faker->word,
+            'vin' => $this->faker->unique()->word,
             'usage' => $this->faker->word,
             'primary_use' => $this->faker->word,
             'annual_mileage' => $this->faker->randomNumber(),
@@ -34,5 +36,15 @@ class VehicleFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'policy_id' => Policy::factory()->create()->id,
         ]);
+    }
+
+    public function withGarageAddress(): static
+    {
+        return $this->has(Address::factory(), 'garagingAddress');
+    }
+
+    public function withCoverages(): static
+    {
+        return $this->has(Coverage::factory()->count(3), 'coverages');
     }
 }

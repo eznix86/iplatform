@@ -2,14 +2,29 @@
 
 namespace App\Actions\Vehicle;
 
-use App\Actions\Coverage\AddCoverages;
+use App\Data\VehicleData;
+use App\Models\Address;
+use App\Models\Coverage;
 use App\Models\Policy;
+use App\Models\Vehicle;
 use App\Traits\HasMultipleData;
+use Closure;
 use Illuminate\Support\Collection;
 
 class AddManyVehiclesToPolicy
 {
     use HasMultipleData;
+
+    public function run($content, Closure $next)
+    {
+        $policy = $content[0];
+        /** @var Collection $vehicles */
+        $vehicles = VehicleData::collect($content[1]['vehicles'], Collection::class);
+
+        $this->handle($policy, $vehicles);
+
+        return $next($content);
+    }
 
     public function handle(Policy $policy, Collection $vehicles)
     {
@@ -26,22 +41,36 @@ class AddManyVehiclesToPolicy
 
     private function createVehicles(Policy $policy, Collection $vehicles)
     {
-        return $policy->vehicles()->createMany($this->toArray($vehicles));
+        $vehicleData = $this->toArray($vehicles);
+
+        return $policy->vehicles()->createMany($vehicleData);
     }
 
     private function createGaragingAddresses(Collection $createdVehicles, Collection $vehicles)
     {
+        $addAddresses = [];
         foreach ($createdVehicles as $createdVehicle) {
             $vehicleData = $vehicles->firstWhere('vin', $createdVehicle->vin);
-            $createdVehicle->garagingAddress()->create($vehicleData->garaging_address->toArray());
+            $addAddresses[] = $vehicleData->garaging_address->toArray() + [
+                'addressable_id' => $createdVehicle->id,
+                'addressable_type' => Vehicle::class,
+            ];
         }
+
+        Address::insert($addAddresses);
     }
 
     private function createCoverage(Collection $createdVehicles, Collection $vehicles)
     {
+        $addCoverages = [];
         foreach ($createdVehicles as $createdVehicle) {
             $vehicleData = $vehicles->firstWhere('vin', $createdVehicle->vin);
-            (new AddCoverages)->handle($createdVehicle, $vehicleData->coverages);
+            $coverages = $vehicleData->coverages->map(function ($coverage) use ($createdVehicle) {
+                return $coverage->toArray() + ['vehicle_id' => $createdVehicle->id];
+            })->toArray();
+            $addCoverages = array_merge($addCoverages, $coverages);
         }
+
+        Coverage::insert($addCoverages);
     }
 }

@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         Passport::personalAccessTokensExpireIn(now()->addMonths(6));
 
         Route::prefix('api/v1')
-            ->middleware(['api'])
+            ->middleware(['api', 'camel-case'])
             ->group(base_path('routes/api/v1.php'));
     }
 }

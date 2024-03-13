@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Actions\Policy\PolicyNumberGenerator;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,7 @@ class PolicyFactory extends Factory
     public function definition(): array
     {
         return [
-            'policy_no' => fake()->unique()->regexify('[A-Z0-9]{11}'),
+            'policy_no' => (new PolicyNumberGenerator)->handle(),
             'policy_status' => fake()->randomElement(['active', 'inactive']),
             'policy_type' => fake()->randomElement(['auto', 'home', 'renters']),
             'policy_effective_date' => fake()->date(),
