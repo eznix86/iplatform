@@ -11,7 +11,7 @@ class StorePolicyHolderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StorePolicyHolderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'address.street' => 'required|string',
+            'address.city' => 'required|string',
+            'address.state' => 'required|string',
+            'address.zip' => 'required|string',
         ];
     }
 }

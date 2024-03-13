@@ -19,6 +19,7 @@ class AddPolicyHolder
 
     public function handle(Policy $policy, PolicyHolderData $policyHolderData)
     {
+        $policy->policyHolder()->delete();
         $policy->policyHolder()->create($policyHolderData->toArray());
         $policy->policyHolder->address()->create($policyHolderData->address->toArray());
     }
