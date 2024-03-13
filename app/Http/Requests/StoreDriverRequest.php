@@ -11,7 +11,7 @@ class StoreDriverRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,17 @@ class StoreDriverRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'date_of_birth' => 'required|date',
+            'gender' => 'required|string',
+            'marital_status' => 'required|string',
+            'license_number' => 'required|string',
+            'license_state' => 'required|string',
+            'license_status' => 'required|string',
+            'license_effective_date' => 'required|date',
+            'license_expiration_date' => 'required|date',
+            'license_class' => 'required|string',
         ];
     }
 }
