@@ -18,6 +18,6 @@ class PolicyHolder extends Model
 
     public function address()
     {
-        return $this->hasOne(Address::class, 'policy_holder_id');
+        return $this->morphOne(Address::class, 'addressable');
     }
 }

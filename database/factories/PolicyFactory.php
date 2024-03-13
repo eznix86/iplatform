@@ -17,7 +17,11 @@ class PolicyFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'policy_no' => fake()->unique()->regexify('[A-Z0-9]{11}'),
+            'policy_status' => fake()->randomElement(['active', 'inactive']),
+            'policy_type' => fake()->randomElement(['auto', 'home', 'renters']),
+            'policy_effective_date' => fake()->date(),
+            'policy_expiration_date' => fake()->date(),
         ];
     }
 }

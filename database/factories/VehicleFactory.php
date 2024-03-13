@@ -17,7 +17,15 @@ class VehicleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'make' => $this->faker->word,
+            'model' => $this->faker->word,
+            'year' => $this->faker->year,
+            'vin' => $this->faker->word,
+            'usage' => $this->faker->word,
+            'primary_use' => $this->faker->word,
+            'annual_mileage' => $this->faker->randomNumber(),
+            'ownership' => $this->faker->word,
+            'policy_id' => \App\Models\Policy::factory(),
         ];
     }
 }

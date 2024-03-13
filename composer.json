@@ -20,7 +20,8 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.0",
-        "percymamedy/laravel-dev-booter": "dev-l11-compatibility"
+        "percymamedy/laravel-dev-booter": "dev-l11-compatibility",
+        "spatie/laravel-data": "^4.3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.0",
