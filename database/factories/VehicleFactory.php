@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Policy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,7 +26,13 @@ class VehicleFactory extends Factory
             'primary_use' => $this->faker->word,
             'annual_mileage' => $this->faker->randomNumber(),
             'ownership' => $this->faker->word,
-            'policy_id' => \App\Models\Policy::factory(),
         ];
+    }
+
+    public function withPolicy(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'policy_id' => Policy::factory()->create()->id,
+        ]);
     }
 }

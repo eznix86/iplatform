@@ -2,6 +2,7 @@
 
 namespace App\Data;
 
+use Illuminate\Support\Collection;
 use Spatie\LaravelData\Data;
 
 class VehicleData extends Data
@@ -16,6 +17,8 @@ class VehicleData extends Data
         public int $annual_mileage,
         public string $ownership,
         public GaragingAddressData $garaging_address,
+        /** @var Collection<int, \App\Data\CoverageData> */
+        public Collection $coverages,
     ) {
     }
 }

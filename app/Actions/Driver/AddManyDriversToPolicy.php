@@ -6,7 +6,7 @@ use App\Models\Policy;
 use App\Traits\HasMultipleData;
 use Illuminate\Support\Collection;
 
-class AddDrivers
+class AddManyDriversToPolicy
 {
     use HasMultipleData;
 

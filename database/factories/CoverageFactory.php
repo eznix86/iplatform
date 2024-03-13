@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Vehicle;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,16 @@ class CoverageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'type' => $this->faker->word,
+            'limit' => $this->faker->randomNumber(5),
+            'deductible' => $this->faker->randomNumber(5),
         ];
+    }
+
+    public function withVehicle(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'vehicle_id' => Vehicle::factory()->withPolicy()->create()->id,
+        ]);
     }
 }

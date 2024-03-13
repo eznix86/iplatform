@@ -1,6 +1,6 @@
 <?php
 
-use App\Actions\Driver\AddDrivers;
+use App\Actions\Driver\AddManyDriversToPolicy;
 use App\Data\DriverData;
 use App\Models\Policy;
 use Illuminate\Support\Collection;
@@ -26,7 +26,7 @@ test('add drivers to policy', function () {
         ],
     ], Collection::class);
 
-    (new AddDrivers)->handle($policy, $drivers);
+    (new AddManyDriversToPolicy)->handle($policy, $drivers);
 
     expect($policy->drivers()->count())->toBe(1);
 });
