@@ -11,7 +11,7 @@ class StoreCoverageRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreCoverageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'type' => 'required|string',
+            'limit' => 'required|integer',
+            'deductible' => 'required|integer',
         ];
     }
 }

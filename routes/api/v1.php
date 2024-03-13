@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoverageController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\PolicyHolderController;
@@ -15,3 +16,5 @@ Route::apiResource('policies/{policy}/drivers', DriverController::class);
 Route::apiResource('policies/{policy}/policy-holder', PolicyHolderController::class);
 
 Route::apiResource('policies/{policy}/vehicles', VehicleController::class);
+
+Route::apiResource('vehicles/{vehicle}/coverages', CoverageController::class);
