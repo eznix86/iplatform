@@ -11,7 +11,7 @@ class StoreVehicleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,23 @@ class StoreVehicleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'year' => 'required|integer',
+            'make' => 'required|string',
+            'model' => 'required|string',
+            'vin' => 'required|string',
+            'usage' => 'required|string',
+            'primary_use' => 'required|string',
+            'annual_mileage' => 'required|integer',
+            'ownership' => 'required|string',
+            'garaging_address' => 'required|array',
+            'garaging_address.street' => 'required|string',
+            'garaging_address.city' => 'required|string',
+            'garaging_address.state' => 'required|string',
+            'garaging_address.zip' => 'required|string',
+            'coverages' => 'required|array',
+            'coverages.*.type' => 'required|string',
+            'coverages.*.limit' => 'required|integer',
+            'coverages.*.deductible' => 'required|integer',
         ];
     }
 }

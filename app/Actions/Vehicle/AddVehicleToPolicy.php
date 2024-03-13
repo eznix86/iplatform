@@ -17,5 +17,7 @@ class AddVehicleToPolicy
         $currentVehicle->garagingAddress()->create($vehicle->garaging_address->toArray());
 
         (new AddCoverages)->handle($currentVehicle, $vehicle->coverages);
+
+        return $currentVehicle;
     }
 }
