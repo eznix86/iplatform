@@ -24,7 +24,8 @@
         "livewire/livewire": "^3.0",
         "mpociot/versionable": "^4.4",
         "percymamedy/laravel-dev-booter": "dev-l11-compatibility",
-        "spatie/laravel-data": "^4.3"
+        "spatie/laravel-data": "^4.3",
+        "spatie/laravel-permission": "^6.4"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.0",

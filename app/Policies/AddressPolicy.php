@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\Roles;
 use App\Models\Address;
 use App\Models\User;
 
@@ -12,7 +13,7 @@ class AddressPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -20,7 +21,7 @@ class AddressPolicy
      */
     public function view(User $user, Address $address): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -28,7 +29,7 @@ class AddressPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -36,7 +37,7 @@ class AddressPolicy
      */
     public function update(User $user, Address $address): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -44,7 +45,7 @@ class AddressPolicy
      */
     public function delete(User $user, Address $address): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -52,7 +53,7 @@ class AddressPolicy
      */
     public function restore(User $user, Address $address): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -60,6 +61,6 @@ class AddressPolicy
      */
     public function forceDelete(User $user, Address $address): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 }

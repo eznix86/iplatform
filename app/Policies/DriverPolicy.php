@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\Roles;
 use App\Models\Driver;
 use App\Models\User;
 
@@ -12,7 +13,7 @@ class DriverPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -20,7 +21,7 @@ class DriverPolicy
      */
     public function view(User $user, Driver $driver): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -28,7 +29,7 @@ class DriverPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -36,7 +37,7 @@ class DriverPolicy
      */
     public function update(User $user, Driver $driver): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -44,7 +45,7 @@ class DriverPolicy
      */
     public function delete(User $user, Driver $driver): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -52,7 +53,7 @@ class DriverPolicy
      */
     public function restore(User $user, Driver $driver): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -60,6 +61,6 @@ class DriverPolicy
      */
     public function forceDelete(User $user, Driver $driver): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 }

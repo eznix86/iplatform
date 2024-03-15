@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Roles;
 use App\Models\Driver;
 use App\Models\Policy;
 use App\Models\PolicyHolder;
@@ -19,17 +20,25 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
+        \Artisan::call('roles:seed');
+
         User::factory()->create([
             'name' => 'Bruce Wayne',
             'email' => 'iamthenight@gmail.com',
             'password' => Hash::make('password'),
-        ]);
+        ])->assignRole(Roles::SUPER_ADMIN->value);
 
         User::factory()->create([
             'name' => 'John Dough',
             'email' => 'ilovecakes@gmail.com',
             'password' => Hash::make('password'),
-        ]);
+        ])->assignRole(Roles::POLICY_MAKER->value);
+
+        User::factory()->create([
+            'name' => 'Lambda User',
+            'email' => 'anybody@gmail.com',
+            'password' => Hash::make('password'),
+        ])->assignRole(Roles::CUSTOMER->value);
 
         Policy::factory(10)->create();
 

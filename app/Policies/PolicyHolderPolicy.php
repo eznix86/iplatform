@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\Roles;
 use App\Models\PolicyHolder;
 use App\Models\User;
 
@@ -12,7 +13,7 @@ class PolicyHolderPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -20,7 +21,7 @@ class PolicyHolderPolicy
      */
     public function view(User $user, PolicyHolder $policyHolder): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -28,7 +29,7 @@ class PolicyHolderPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -36,7 +37,7 @@ class PolicyHolderPolicy
      */
     public function update(User $user, PolicyHolder $policyHolder): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -44,7 +45,7 @@ class PolicyHolderPolicy
      */
     public function delete(User $user, PolicyHolder $policyHolder): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -52,7 +53,7 @@ class PolicyHolderPolicy
      */
     public function restore(User $user, PolicyHolder $policyHolder): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 
     /**
@@ -60,6 +61,6 @@ class PolicyHolderPolicy
      */
     public function forceDelete(User $user, PolicyHolder $policyHolder): bool
     {
-        //
+        return $user->hasRole(Roles::POLICY_MAKER->value);
     }
 }
