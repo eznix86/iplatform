@@ -8,12 +8,15 @@ use App\Models\Policy;
 use App\Models\PolicyHolder;
 use App\Models\User;
 use App\Models\Vehicle;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
+    use WithoutModelEvents;
+
     /**
      * Seed the application's database.
      */
@@ -40,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ])->assignRole(Roles::CUSTOMER->value);
 
-        Policy::factory(10)->create();
+        Policy::factory(30)->create();
 
         /** @var Collection<\App\Models\Policy> $policy */
         $policies = Policy::all();
@@ -55,5 +58,6 @@ class DatabaseSeeder extends Seeder
             $policy->drivers()->createMany(Driver::factory(random_int(1, 2))->make()->toArray());
         });
 
+        \Artisan::call('scout:import-all');
     }
 }

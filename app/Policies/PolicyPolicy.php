@@ -21,7 +21,8 @@ class PolicyPolicy
      */
     public function view(User $user, Policy $policy): bool
     {
-        return $user->hasRole(Roles::POLICY_MAKER->value) || $policy->users->contains($user);
+        return true;
+        // return $user->hasRole(Roles::POLICY_MAKER->value) || $policy->users->contains($user);
     }
 
     /**

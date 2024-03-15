@@ -11,6 +11,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/laravel-shift/laravel-dev-booter.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/laravel-shift/laravel-scout-tntsearch-driver.git"
         }
     ],
     "require": {
@@ -20,10 +24,12 @@
         "laravel/jetstream": "^5.0",
         "laravel/passport": "^12.0",
         "laravel/sanctum": "^4.0",
+        "laravel/scout": "^10.8",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.0",
         "mpociot/versionable": "^4.4",
         "percymamedy/laravel-dev-booter": "dev-l11-compatibility",
+        "teamtnt/laravel-scout-tntsearch-driver": "dev-l11-compatibility",
         "spatie/laravel-data": "^4.3",
         "spatie/laravel-permission": "^6.4"
     },
@@ -83,10 +89,7 @@
             "dev-master": "11.x-dev"
         },
         "laravel": {
-            "dont-discover": [
-                "laravel/telescope",
-                "fruitcake/laravel-telescope-toolbar"
-            ]
+            "dont-discover": []
         }
     },
     "config": {
