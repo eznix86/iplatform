@@ -34,6 +34,7 @@ console_command = 'php /var/www/html/artisan tinker'
   REDIS_CACHE_DB = '0'
   REDIS_URL = 'redis://default:6f09a8a0d53f43528daa7f7e493c6367@fly-ancient-dawn-4060.upstash.io:6379'
   QUEUE_CONNECTION = 'redis'
+  SCOUT_DRIVER='tntsearch'
 
 [mounts]
   source = 'storage_vol'
