@@ -102,6 +102,9 @@ return [
             'with' => [
                 'stream' => 'php://stderr',
             ],
+            'formatter_with' => [
+                'includeStacktraces' => true,
+            ],
             'processors' => [PsrLogMessageProcessor::class],
         ],
 
