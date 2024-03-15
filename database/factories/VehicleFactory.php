@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\OwnershipType;
+use App\Enums\UsageType;
 use App\Models\Address;
 use App\Models\Coverage;
 use App\Models\Policy;
@@ -24,10 +26,10 @@ class VehicleFactory extends Factory
             'model' => $this->faker->word,
             'year' => $this->faker->year,
             'vin' => $this->faker->unique()->word,
-            'usage' => $this->faker->word,
-            'primary_use' => $this->faker->word,
+            'usage' => $this->faker->randomElement(UsageType::cases()),
+            'primary_use' => $this->faker->randomElement(UsageType::cases()),
             'annual_mileage' => $this->faker->randomNumber(),
-            'ownership' => $this->faker->word,
+            'ownership' => $this->faker->randomElement(OwnershipType::cases()),
         ];
     }
 

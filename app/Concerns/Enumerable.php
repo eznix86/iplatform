@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Concerns;
 
+use Str;
+
 trait Enumerable
 {
     /**
@@ -16,7 +18,7 @@ trait Enumerable
 
     public function toTranslatableString(): string
     {
-        return (new \ReflectionClass(self::class))->getShortName().'.'.$this->value;
+        return Str::ucfirst($this->value);
     }
 
     /**

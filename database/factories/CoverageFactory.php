@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\CoverageType;
 use App\Models\Vehicle;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +19,7 @@ class CoverageFactory extends Factory
     public function definition(): array
     {
         return [
-            'type' => $this->faker->word,
+            'type' => $this->faker->randomElement(CoverageType::cases()),
             'limit' => $this->faker->randomNumber(5),
             'deductible' => $this->faker->randomNumber(5),
         ];

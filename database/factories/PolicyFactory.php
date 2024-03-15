@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Actions\Policy\PolicyNumberGenerator;
+use App\Enums\PolicyStatus;
+use App\Enums\PolicyType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,8 +21,8 @@ class PolicyFactory extends Factory
     {
         return [
             'policy_no' => (new PolicyNumberGenerator)->handle(),
-            'policy_status' => fake()->randomElement(['active', 'inactive']),
-            'policy_type' => fake()->randomElement(['auto', 'home', 'renters']),
+            'policy_status' => fake()->randomElement(PolicyStatus::cases()),
+            'policy_type' => fake()->randomElement(PolicyType::cases()),
             'policy_effective_date' => fake()->date(),
             'policy_expiration_date' => fake()->date(),
         ];
