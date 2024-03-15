@@ -32,11 +32,11 @@
                                     <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $policy->policy_expiration_date->format('Y M d') }}</td>
                                     <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $policy->policyHolder->full_name }}</td>
                                     <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                        @cannot('view', $policy)
-                                        <a href="{{ route('policies.show', $policy) }}" class="text-indigo-600 hover:text-indigo-900">View</a>
-                                        @else
-                                        <a class="text-blue-600 hover:text-blue-700" href="#">Edit</a>
-                                        @endcannot
+                                        <a href="{{ route('policies.show', $policy) }}" class="text-blue-600 hover:text-blue-700">View</a>
+                                        @can('update', $policy)
+                                        |
+                                        <a class="text-blue-600 hover:text-blue-700" href="{{ route('policies.update', $policy) }}">Edit</a>
+                                        @endcan
                                     </td>
                                 </tr>
                                 @endforeach
