@@ -25,4 +25,9 @@ class Policy extends Model
     {
         return $this->hasMany(Vehicle::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'policy_user');
+    }
 }

@@ -62,4 +62,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function policies()
+    {
+        return $this->belongsToMany(Policy::class, 'policy_user');
+    }
 }
