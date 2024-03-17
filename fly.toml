@@ -9,7 +9,7 @@ console_command = 'php /var/www/html/artisan tinker'
 
 [build]
   [build.args]
-    NODE_VERSION = '18'
+    NODE_VERSION = '20'
     PHP_VERSION = '8.3'
 
 [env]
@@ -35,6 +35,7 @@ console_command = 'php /var/www/html/artisan tinker'
   REDIS_URL = 'redis://default:6f09a8a0d53f43528daa7f7e493c6367@fly-ancient-dawn-4060.upstash.io:6379'
   QUEUE_CONNECTION = 'redis'
   SCOUT_DRIVER='tntsearch'
+  GOTENBERG_URL='https://demo.gotenberg.dev'
 
 [mounts]
   source = 'storage_vol'
