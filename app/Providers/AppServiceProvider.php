@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Enums\Permissions;
 use App\Enums\Roles;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -44,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::define(Permissions::CREATE_THIRD_PARTY_API_TOKEN->value, function ($user, $model) {
             return $user->hasRole(Roles::SUPER_ADMIN->value);
+        });
+
+        Gate::define(Permissions::DOWNLOAD_PDF->value, function (User $user, $model) {
+            return $user->hasAllRoles([Roles::POLICY_MAKER->value, Roles::CUSTOMER->value]);
         });
     }
 }
