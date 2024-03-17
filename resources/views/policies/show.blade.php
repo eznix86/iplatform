@@ -5,6 +5,6 @@
         </h2>
     </x-slot>
     <div class="container py-12">
-
+        @livewire('policies.show')
     </div>
 </x-app-layout>

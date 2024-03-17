@@ -2,6 +2,7 @@
 
 use App\Enums\Permissions;
 use App\Http\Controllers\DownloadPolicyDocumentController;
+use App\Livewire\Policies\Show;
 use App\Models\Policy;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,7 @@ Route::prefix('policies')->as('policies.')->group(function () {
         return view('policies.new');
     })->name('create')->can('create', Policy::class);
 
-    Route::get('/{policy}', function (Policy $policy) {
-        return view('policies.show');
-    })->name('show')->middleware('can:view,policy');
+    Route::get('/{policy}', Show::class)->name('show')->middleware('can:view,policy');
 
     Route::get('/{policy}/edit', function (Policy $policy) {
         return view('policies.update');
