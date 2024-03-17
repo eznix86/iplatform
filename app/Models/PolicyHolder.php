@@ -11,8 +11,6 @@ class PolicyHolder extends Model
 
     protected $fillable = ['first_name', 'last_name', 'policy_id'];
 
-    protected $appends = ['full_name'];
-
     /**
      * Get the user's full name.
      */

@@ -11,7 +11,7 @@ class Policy extends Model
     use HasFactory;
     use Searchable;
 
-    public $with = ['policyHolder', 'drivers', 'vehicles'];
+    public $with = ['policyHolder', 'drivers', 'vehicles', 'policyHolder.address', 'vehicles.coverages'];
 
     public function toSearchableArray()
     {
