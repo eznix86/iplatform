@@ -75,31 +75,31 @@ curl --request POST \
 Use `Bearer Token`:
 
 ```csv
-  GET|HEAD        api/v1/policies .......................................................................... api.v1.policies.index › PolicyController@index
-  POST            api/v1/policies .......................................................................... api.v1.policies.store › PolicyController@store
-  GET|HEAD        api/v1/policies/{policy} ................................................................... api.v1.policies.show › PolicyController@show
-  PUT|PATCH       api/v1/policies/{policy} ............................................................... api.v1.policies.update › PolicyController@update
-  DELETE          api/v1/policies/{policy} ............................................................. api.v1.policies.destroy › PolicyController@destroy
-  GET|HEAD        api/v1/policies/{policy}/drivers .......................................................... api.v1.drivers.index › DriverController@index
-  POST            api/v1/policies/{policy}/drivers .......................................................... api.v1.drivers.store › DriverController@store
-  GET|HEAD        api/v1/policies/{policy}/drivers/{driver} ................................................... api.v1.drivers.show › DriverController@show
-  PUT|PATCH       api/v1/policies/{policy}/drivers/{driver} ............................................... api.v1.drivers.update › DriverController@update
-  DELETE          api/v1/policies/{policy}/drivers/{driver} ............................................. api.v1.drivers.destroy › DriverController@destroy
-  GET|HEAD        api/v1/policies/{policy}/policy-holder ........................................ api.v1.policy-holder.index › PolicyHolderController@index
-  POST            api/v1/policies/{policy}/policy-holder ........................................ api.v1.policy-holder.store › PolicyHolderController@store
-  GET|HEAD        api/v1/policies/{policy}/policy-holder/{policy_holder} .......................... api.v1.policy-holder.show › PolicyHolderController@show
-  PUT|PATCH       api/v1/policies/{policy}/policy-holder/{policy_holder} ...................... api.v1.policy-holder.update › PolicyHolderController@update
-  DELETE          api/v1/policies/{policy}/policy-holder/{policy_holder} .................... api.v1.policy-holder.destroy › PolicyHolderController@destroy
-  GET|HEAD        api/v1/policies/{policy}/vehicles ....................................................... api.v1.vehicles.index › VehicleController@index
-  POST            api/v1/policies/{policy}/vehicles ....................................................... api.v1.vehicles.store › VehicleController@store
-  GET|HEAD        api/v1/policies/{policy}/vehicles/{vehicle} ............................................... api.v1.vehicles.show › VehicleController@show
-  PUT|PATCH       api/v1/policies/{policy}/vehicles/{vehicle} ........................................... api.v1.vehicles.update › VehicleController@update
-  DELETE          api/v1/policies/{policy}/vehicles/{vehicle} ......................................... api.v1.vehicles.destroy › VehicleController@destroy
-  GET|HEAD        api/v1/vehicles/{vehicle}/coverages ................................................... api.v1.coverages.index › CoverageController@index
-  POST            api/v1/vehicles/{vehicle}/coverages ................................................... api.v1.coverages.store › CoverageController@store
-  GET|HEAD        api/v1/vehicles/{vehicle}/coverages/{coverage} .......................................... api.v1.coverages.show › CoverageController@show
-  PUT|PATCH       api/v1/vehicles/{vehicle}/coverages/{coverage} ...................................... api.v1.coverages.update › CoverageController@update
-  DELETE          api/v1/vehicles/{vehicle}/coverages/{coverage}
+  GET    api/v1/policies 
+  POST   api/v1/policies
+  GET    api/v1/policies/{policy}
+  PUT    api/v1/policies/{policy}
+  DELETE api/v1/policies/{policy}
+  GET    api/v1/policies/{policy}/drivers
+  POST   api/v1/policies/{policy}/drivers
+  GET    api/v1/policies/{policy}/drivers/{driver}
+  PUT    api/v1/policies/{policy}/drivers/{driver}
+  DELETE api/v1/policies/{policy}/drivers/{driver}
+  GET    api/v1/policies/{policy}/policy-holder
+  POST   api/v1/policies/{policy}/policy-holder
+  GET    api/v1/policies/{policy}/policy-holder/{policy_holder}
+  PUT    api/v1/policies/{policy}/policy-holder/{policy_holder}
+  DELETE api/v1/policies/{policy}/policy-holder/{policy_holder}
+  GET    api/v1/policies/{policy}/vehicles
+  POST   api/v1/policies/{policy}/vehicles
+  GET    api/v1/policies/{policy}/vehicles/{vehicle}
+  PUT    api/v1/policies/{policy}/vehicles/{vehicle}
+  DELETE api/v1/policies/{policy}/vehicles/{vehicle}
+  GET    api/v1/vehicles/{vehicle}/coverages
+  POST   api/v1/vehicles/{vehicle}/coverages
+  GET    api/v1/vehicles/{vehicle}/coverages/{coverage}
+  PUT    api/v1/vehicles/{vehicle}/coverages/{coverage}
+  DELETE api/v1/vehicles/{vehicle}/coverages/{coverage}
 ```
 ### Local Testing
 
