@@ -89,7 +89,10 @@
             "dev-master": "11.x-dev"
         },
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/telescope",
+                "fruitcake/laravel-telescope-toolbar"
+            ]
         }
     },
     "config": {
