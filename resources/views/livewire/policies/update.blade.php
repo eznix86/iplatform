@@ -64,6 +64,24 @@
                         <x-input-error for="policy_form.policy_expiration_date" />
                     </td>
                 </tr>
+                <tr>
+                    <th for="policy_form.assigned_users" class="text-sm text-left">Assigned to:<span class="text-gray-500"></th>
+                    <td class="">
+                        <select multiple wire:model='policy_form.assigned_users' id="policy_form.assigned_users" name="policy_form.assigned_users" class="mt-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <option value="">Select a user</option>
+                            @foreach (\App\Models\User::role(\App\Enums\Roles::CUSTOMER->value)->get() as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                        <p class="text-xs text-gray-300">(Long-press <kbd>Ctrl</kbd> or <span class="text-lg">⌘</span> while selecting)</span></p>
+                        <x-input-error for="policy_form.assigned_users" />
+                        <div class="flex flex-wrap w-full gap-2 mt-2">
+                            @foreach ($policy->users as $user)
+                            <x-chip label="{{ $user->name }}" />
+                            @endforeach
+                        </div>
+                    </td>
+                </tr>
             </table>
             <div class="flex justify-start px-4 py-5 bg-white sm:px-6">
                 <x-button type="submit" class="bg-blue-600 hover:bg-blue-500">
@@ -108,7 +126,7 @@
                             <x-select wire:model='policy_holder_form.state' name="policy_holder_form.state" placeholder="State">
                                 <option value="">Please select Your state</option>
                                 @foreach(\App\Enums\LicenseState::asSelectArray() as $value => $label)
-                                <option value="{{ $value }}" selected="" {{ $policy->policyHolder->address->state == $value}}>{{ Str::upper($label) }}</option>
+                                <option value="{{ $value }}" selected="" {{ $policy->policyHolder?->address?->state == $value}}>{{ Str::upper($label) }}</option>
                                 @endforeach
                             </x-select>
                             <x-input-error for="policy_holder_form.state" />

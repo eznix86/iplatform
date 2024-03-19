@@ -53,6 +53,8 @@ class Create extends Component
 
         $policy = (new CreatePolicy)->handle(PolicyData::from($policyData));
 
+        $policy->users()->sync($this->assign_users);
+
         return redirect()
             ->route('policies.show', [
                 'policy' => $policy->id,

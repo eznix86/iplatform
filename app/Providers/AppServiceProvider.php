@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define(Permissions::DOWNLOAD_PDF->value, function (User $user, $model) {
-            return $user->hasAllRoles([Roles::POLICY_MAKER->value, Roles::CUSTOMER->value]);
+            return $user->hasAnyRole([Roles::POLICY_MAKER->value, Roles::CUSTOMER->value]);
         });
     }
 }

@@ -11,6 +11,7 @@
                     <h3 class="text-base font-semibold leading-6 text-gray-900">Policy Information</h3>
                 </div>
                 <div class="flex-shrink-0 mt-2 ml-4">
+                    @can('delete', $policy)
                     <a href="{{ route('policies.destroy', $policy) }}" class="relative inline-flex items-center px-3 py-2 text-sm font-semibold text-white bg-red-600 rounded-md shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                         <svg class="mx-2 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -18,12 +19,16 @@
 
                         Delete Policy
                     </a>
+                    @endcan
+                    @can('update', $policy)
                     <a href="{{ route('policies.update', $policy) }}" class="relative inline-flex items-center px-3 py-2 text-sm font-semibold text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                         <svg class="mx-2 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                         </svg>
                         Edit Policy
                     </a>
+                    @endcan
+                    @can(\App\Enums\Permissions::DOWNLOAD_PDF->value, $policy)
                     <a href="{{ route('policies.download', $policy) }}" target="_blank" rel="noopener noreferrer" class="relative inline-flex items-center px-3 py-2 text-sm font-semibold text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                         <svg class="mx-2 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
@@ -31,6 +36,8 @@
 
                         Download Policy
                     </a>
+                    @endcan
+
                 </div>
             </div>
         </div>
@@ -56,6 +63,18 @@
                 <th class="text-sm text-left">Expiration Date</th>
                 <td class="text-sm">{{ $policy->policy_expiration_date->format('Y-m-d') }}</td>
             </tr>
+            @can('viewAny', $policy)
+            <tr>
+                <th class="text-sm text-left">Assigned To</th>
+                <td class="">
+                    <div class="flex flex-wrap w-full gap-2 mt-2">
+                        @foreach ($policy->users as $user)
+                        <x-chip label="{{ $user->name }}" />
+                        @endforeach
+                    </div>
+                </td>
+            </tr>
+            @endcan
         </table>
     </section>
     @if($policy->policyHolder()->exists())
@@ -155,7 +174,7 @@
                     </tr>
                     <tr>
                         <th class="text-sm text-left ">Garaging Address</th>
-                        <td class="text-sm">{{ $vehicle->garagingAddress->full_address }}</td>
+                        <td class="text-sm">{{ $vehicle?->garagingAddress?->full_address ?? '' }}</td>
                     </tr>
                 </table>
             </div>

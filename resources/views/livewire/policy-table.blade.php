@@ -46,7 +46,7 @@
                                         |
                                         <a class="text-blue-600 hover:text-blue-700" href="{{ route('policies.update', $policy) }}">Edit</a>
                                         @endcan
-                                        @can(\App\Enums\Permissions::DOWNLOAD_PDF->value)
+                                        @can(\App\Enums\Permissions::DOWNLOAD_PDF->value, $policy)
                                         |
                                         <a class="text-blue-600 hover:text-blue-700" href="{{ route('policies.download', $policy) }}" target="_blank" rel="noopener noreferrer">Download</a>
                                         @endcan

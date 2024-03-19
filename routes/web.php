@@ -28,7 +28,7 @@ Route::prefix('policies')->as('policies.')->group(function () {
 
     Route::get('/{policy}/download', DownloadPolicyDocumentController::class)
         ->name('download')
-        ->can(Permissions::DOWNLOAD_PDF->value);
+        ->can(Permissions::DOWNLOAD_PDF->value, Policy::class);
 });
 
 Route::middleware([

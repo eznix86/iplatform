@@ -20,6 +20,8 @@ class UpdatePolicyForm extends Form
 
     public $policy_expiration_date = '';
 
+    public $assigned_users = '';
+
     public function setPolicy(Policy $policy)
     {
         $this->policy = $policy;
@@ -39,5 +41,7 @@ class UpdatePolicyForm extends Form
         ]);
 
         $this->policy->update($this->only('policy_type', 'policy_status', 'policy_effective_date', 'policy_expiration_date'));
+
+        $this->policy->users()->sync($this->assigned_users);
     }
 }

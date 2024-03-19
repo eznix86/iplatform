@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\ViewedByCustomerOnlyScope;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
+#[ScopedBy(ViewedByCustomerOnlyScope::class)]
 class Policy extends Model
 {
     use HasFactory;

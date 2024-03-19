@@ -43,6 +43,18 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ])->assignRole(Roles::CUSTOMER->value);
 
+        User::factory()->create([
+            'name' => 'Lambda User 2',
+            'email' => 'anybody2@gmail.com',
+            'password' => Hash::make('password'),
+        ])->assignRole(Roles::CUSTOMER->value);
+
+        User::factory()->create([
+            'name' => 'Lambda User 3',
+            'email' => 'anybody3@gmail.com',
+            'password' => Hash::make('password'),
+        ])->assignRole(Roles::CUSTOMER->value);
+
         Policy::factory(30)->create();
 
         /** @var Collection<\App\Models\Policy> $policy */
@@ -56,6 +68,9 @@ class DatabaseSeeder extends Seeder
                 'policy_id' => $policy->id,
             ]);
             $policy->drivers()->createMany(Driver::factory(random_int(1, 2))->make()->toArray());
+        });
+        $policies->random(2)->each(function (Policy $policy) {
+            $policy->users()->attach(User::role([Roles::CUSTOMER->value])->get()->random(3));
         });
 
         \Artisan::call('scout:import-all');
