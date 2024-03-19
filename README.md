@@ -1,6 +1,16 @@
 Car4Sure
 ==========
 
+# Features
+- Login and Sign Up
+- Full Text Search
+- CRUD a Policy with its drivers, policy holder, vehicles and its coverages
+- Download a Policy in PDF
+- Roles & Permissions
+- Scopes - where Customers only sees policies assigned to them
+- API endpoints (Using OAuth2 for Third Party Connection)
+  - `/api/v1/policies/`
+
 ## How it works
 
 - This project is an internal tool to allow insurance Car4Sure to manage policies.
@@ -16,7 +26,7 @@ Car4Sure
 We have 3 types of users
 - Customers, they are allowed to view only their policies and download them.
 - Policy Makers/Managers are allowed to create update and delete policies.
-- Admins are allowed to do everything + They can create Client Credentials And Password Grants.
+- Admins are allowed to do everything + They can create Client Credentials And Password Grants. (No UI done will need to do it via CLI)
 
 
 ### Why it works like this ?
@@ -32,12 +42,67 @@ Duplicate data ? Possible, but storage is cheap. We can always connect the dots 
 
 ### Live version
 
-Checkout: https://iplatform.fly.dev
+Users available (same as Local):
 
+`iamthenight@gmail.com` (super admin - same as policy maker, didn't add more features for this user.)
+`ilovecakes@gmail.com` (policy maker)
+`anybody@gmail.com` (customer)
+`anybody2@gmail.com` (customer)
+`anybody3@gmail.com` (customer)
 
+All has `password` as password. You can also register at:
+
+`https://iplatform.fly.dev/register` if you want to but you will have no data.
+
+Login at: `https://iplatform.fly.dev`
+
+To interact with API:
+
+Client ID: `1`
+Client Secret: `LuntU1QxcYuBk4Ru110pUTGhfErctEfWxRyuTGYU`
+
+```
+curl --request POST \
+  --url https://iplatform.fly.dev/oauth/token \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data grant_type=client_credentials \
+  --data client_id=1 \
+  --data client_secret=fQjVPxrQTSUmwfExFZK7tU1WmxE1IlRreJjrPmAD
+```
+Use `Bearer Token`:
+
+```csv
+  GET|HEAD        api/v1/policies .......................................................................... api.v1.policies.index › PolicyController@index
+  POST            api/v1/policies .......................................................................... api.v1.policies.store › PolicyController@store
+  GET|HEAD        api/v1/policies/{policy} ................................................................... api.v1.policies.show › PolicyController@show
+  PUT|PATCH       api/v1/policies/{policy} ............................................................... api.v1.policies.update › PolicyController@update
+  DELETE          api/v1/policies/{policy} ............................................................. api.v1.policies.destroy › PolicyController@destroy
+  GET|HEAD        api/v1/policies/{policy}/drivers .......................................................... api.v1.drivers.index › DriverController@index
+  POST            api/v1/policies/{policy}/drivers .......................................................... api.v1.drivers.store › DriverController@store
+  GET|HEAD        api/v1/policies/{policy}/drivers/{driver} ................................................... api.v1.drivers.show › DriverController@show
+  PUT|PATCH       api/v1/policies/{policy}/drivers/{driver} ............................................... api.v1.drivers.update › DriverController@update
+  DELETE          api/v1/policies/{policy}/drivers/{driver} ............................................. api.v1.drivers.destroy › DriverController@destroy
+  GET|HEAD        api/v1/policies/{policy}/policy-holder ........................................ api.v1.policy-holder.index › PolicyHolderController@index
+  POST            api/v1/policies/{policy}/policy-holder ........................................ api.v1.policy-holder.store › PolicyHolderController@store
+  GET|HEAD        api/v1/policies/{policy}/policy-holder/{policy_holder} .......................... api.v1.policy-holder.show › PolicyHolderController@show
+  PUT|PATCH       api/v1/policies/{policy}/policy-holder/{policy_holder} ...................... api.v1.policy-holder.update › PolicyHolderController@update
+  DELETE          api/v1/policies/{policy}/policy-holder/{policy_holder} .................... api.v1.policy-holder.destroy › PolicyHolderController@destroy
+  GET|HEAD        api/v1/policies/{policy}/vehicles ....................................................... api.v1.vehicles.index › VehicleController@index
+  POST            api/v1/policies/{policy}/vehicles ....................................................... api.v1.vehicles.store › VehicleController@store
+  GET|HEAD        api/v1/policies/{policy}/vehicles/{vehicle} ............................................... api.v1.vehicles.show › VehicleController@show
+  PUT|PATCH       api/v1/policies/{policy}/vehicles/{vehicle} ........................................... api.v1.vehicles.update › VehicleController@update
+  DELETE          api/v1/policies/{policy}/vehicles/{vehicle} ......................................... api.v1.vehicles.destroy › VehicleController@destroy
+  GET|HEAD        api/v1/vehicles/{vehicle}/coverages ................................................... api.v1.coverages.index › CoverageController@index
+  POST            api/v1/vehicles/{vehicle}/coverages ................................................... api.v1.coverages.store › CoverageController@store
+  GET|HEAD        api/v1/vehicles/{vehicle}/coverages/{coverage} .......................................... api.v1.coverages.show › CoverageController@show
+  PUT|PATCH       api/v1/vehicles/{vehicle}/coverages/{coverage} ...................................... api.v1.coverages.update › CoverageController@update
+  DELETE          api/v1/vehicles/{vehicle}/coverages/{coverage}
+```
 ### Local Testing
 
-- `php artisan passport:keys` # This generate pub and private keys
+Use Laravel Herd or Laravel Valet or Use the docker-compose.
+
+- `php artisan passport:keys` # This generate pub and private keys for API.
 
 if you want to generate a keypair manually:
 
@@ -72,12 +137,14 @@ php artisan route:list | grep api/v1
 
 You will get a list of API endpoints to call. In case there is no data.
 
+Reset Database
+
 ```sh
 php artisan migrate:fresh --seed
 ```
 
 This will create some fake data. It will also create 2 testing users for login purposes.
 
-Users are: `iamthenight@gmail.com` & `ilovecakes@gmail.com` and `password` for password (both users).
+
 
 
