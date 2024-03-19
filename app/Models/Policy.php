@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Scopes\ViewedByCustomerOnlyScope;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
@@ -15,6 +16,11 @@ class Policy extends Model
     use Searchable;
 
     public $with = ['policyHolder', 'drivers', 'vehicles', 'policyHolder.address', 'vehicles.coverages'];
+
+    public static function makeAllSearchableUsing(Builder $query): Builder
+    {
+        return $query->withoutGlobalScopes();
+    }
 
     public function toSearchableArray()
     {
