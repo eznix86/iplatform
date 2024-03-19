@@ -16,10 +16,25 @@
 <script>
     var picker = new Pikaday({
         field: document.getElementById("{{ $id }}")
+        , format: 'YYYY-MM-DD'
         , theme: "pikaday-white"
-        , onSelect: function() {
-            let date = this.getDate();
-            @this.set("{{ $id }}", date.toISOString().split('T')[0]);
+        , toString(date, format) {
+            var d = new Date(date)
+                , month = '' + (d.getMonth() + 1)
+                , day = '' + d.getDate()
+                , year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+        , parse(dateString, format) {
+            let parts = dateString.split('-');
+            console.log(parts)
+            return new Date(parts[0], parts[2], parts[1]);
         }
     });
 
