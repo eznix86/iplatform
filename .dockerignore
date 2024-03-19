@@ -36,3 +36,5 @@ _ide_helper_models.php
 storage/*.index
 storage/pdfs/*
 storage/database/*.sqlite
+storage/*.index-shm
+storage/*.index-wal

@@ -38,6 +38,7 @@
                 </tr>
             </table>
         </section>
+        @if($policy->policyHolder)
         <section class="break-inside-avoid-page">
             <h2 class="my-4 text-2xl font-bold text-blue-800">Policy Holder Information</h2>
             <table>
@@ -51,6 +52,8 @@
                 </tr>
             </table>
         </section>
+        @endif
+        @if($policy->drivers)
         <section>
             <h2 class="my-4 text-2xl font-bold text-blue-800">Drivers Information</h2>
             <table class="break-inside-avoid-page">
@@ -98,6 +101,8 @@
                 @endforeach
             </table>
         </section>
+        @endif
+        @if($policy->vehicles)
         <section class="py-8">
             <h2 class="my-4 text-2xl font-bold text-blue-800">Vehicles Information</h2>
             @foreach ($policy->vehicles as $vehicle)
@@ -164,6 +169,7 @@
             </div>
             @endforeach
         </section>
+        @endif
     </div>
 </body>
 

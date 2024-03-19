@@ -6,5 +6,6 @@ return [
     'local_providers' => [
         \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         \App\Providers\TelescopeServiceProvider::class,
+        \Fruitcake\TelescopeToolbar\ToolbarServiceProvider::class,
     ],
 ];

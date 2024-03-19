@@ -25,3 +25,5 @@ storage/*.index
 storage/pdfs/*
 storage/database/*.sqlite
 .phpactor.json
+storage/*.index-shm
+storage/*.index-wal

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Str;
 
 class Address extends Model
 {
@@ -13,7 +14,9 @@ class Address extends Model
 
     public function getFullAddressAttribute()
     {
-        return "{$this->street}, {$this->city}, {$this->state}, {$this->zip}";
+        $state = Str::upper($this->state);
+
+        return "{$this->street}, {$this->city}, {$state}, {$this->zip}";
     }
 
     public function addressable()

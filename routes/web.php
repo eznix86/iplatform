@@ -2,7 +2,10 @@
 
 use App\Enums\Permissions;
 use App\Http\Controllers\DownloadPolicyDocumentController;
+use App\Livewire\Policies\Create;
+use App\Livewire\Policies\Destroy;
 use App\Livewire\Policies\Show;
+use App\Livewire\Policies\Update;
 use App\Models\Policy;
 use Illuminate\Support\Facades\Route;
 
@@ -15,19 +18,13 @@ Route::prefix('policies')->as('policies.')->group(function () {
         return redirect('dashboard');
     })->name('index');
 
-    Route::get('/new', function () {
-        return view('policies.new');
-    })->name('create')->can('create', Policy::class);
+    Route::get('/new', Create::class)->name('create')->can('create', Policy::class);
 
     Route::get('/{policy}', Show::class)->name('show')->middleware('can:view,policy');
 
-    Route::get('/{policy}/edit', function (Policy $policy) {
-        return view('policies.update');
-    })->name('update')->middleware('can:update,policy');
+    Route::get('/{policy}/edit', Update::class)->name('update')->middleware('can:update,policy');
 
-    Route::get('/{policy}/delete', function (Policy $policy) {
-        return view('policies.delete');
-    })->name('destroy')->middleware('can:delete,policy');
+    Route::get('/{policy}/delete', Destroy::class)->name('destroy')->middleware('can:delete,policy');
 
     Route::get('/{policy}/download', DownloadPolicyDocumentController::class)
         ->name('download')

@@ -35,7 +35,11 @@
                                     <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $policy->policy_type }}</td>
                                     <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $policy->policy_effective_date->format('Y M d') }}</td>
                                     <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $policy->policy_expiration_date->format('Y M d') }}</td>
+                                    @if($policy->policyHolder()->exists())
                                     <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $policy->policyHolder->full_name }}</td>
+                                    @else
+                                    <td class="px-5 py-4 text-sm whitespace-nowrap">N/A</td>
+                                    @endif
                                     <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                         <a href="{{ route('policies.show', $policy) }}" class="text-blue-600 hover:text-blue-700">View</a>
                                         @can('update', $policy)
@@ -45,6 +49,9 @@
                                         @can(\App\Enums\Permissions::DOWNLOAD_PDF->value)
                                         |
                                         <a class="text-blue-600 hover:text-blue-700" href="{{ route('policies.download', $policy) }}" target="_blank" rel="noopener noreferrer">Download</a>
+                                        @endcan
+                                        @can('delete', $policy) |
+                                        <a class="text-blue-600 hover:text-blue-700" href="{{ route('policies.destroy', $policy) }}">Delete</a>
                                         @endcan
                                     </td>
                                 </tr>

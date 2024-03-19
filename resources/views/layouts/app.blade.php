@@ -31,6 +31,7 @@
             </div>
         </header>
         @endif
+        <x-flash />
 
         <!-- Page Content -->
         <main>
