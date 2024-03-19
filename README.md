@@ -2,6 +2,8 @@ Car4Sure
 ==========
 
 # Features
+- CI/CD to Fly.io
+- Uses SQLite as Database in Production
 - Login and Sign Up
 - Full Text Search
 - CRUD a Policy with its drivers, policy holder, vehicles and its coverages
@@ -42,6 +44,8 @@ Duplicate data ? Possible, but storage is cheap. We can always connect the dots 
 
 ### Live version
 
+Login at: `https://iplatform.fly.dev`
+
 Users available (same as Local):
 
 `iamthenight@gmail.com` (super admin - same as policy maker, didn't add more features for this user.)
@@ -54,7 +58,6 @@ All has `password` as password. You can also register at:
 
 `https://iplatform.fly.dev/register` if you want to but you will have no data.
 
-Login at: `https://iplatform.fly.dev`
 
 To interact with API:
 
